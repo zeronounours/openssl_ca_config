@@ -1,0 +1,26 @@
+[ req ]
+# Information about the generated certificate
+default_days                    = 3650                      # Validity 10 years
+default_keyfile                 = private/root_ca.key.new
+encrypt_key                     = yes
+default_bits                    = 4096                      # Key size
+default_md                      = sha256                    # Hash method
+distinguished_name              = rdn
+prompt                          = no
+req_extensions                  = req_exts
+
+[ rdn ]
+# Information about the issuer
+countryName                     = FR
+localityName                    = Toulouse
+organizationName                = zeroNounours
+organizationalUnitName          = CA
+commonName                      = zeroNounours Root CA
+emailAddress                    = admin@zeronounours.eu
+
+[ req_exts ]
+# Extensions for the certificate
+basicConstraints                = critical,CA:TRUE
+keyUsage                        = critical, keyCertSign, cRLSign
+subjectKeyIdentifier		= hash
+subjectAltName 			= email:copy

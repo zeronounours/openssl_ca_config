@@ -10,7 +10,13 @@
 
 **/certs/**
 !**/certs/.keep
+**/newcerts/**
+!**/newcerts/.keep
 
 # Fichiers du CA : index, serial, crl, etc
-**/ca_files/**
+**/ca_files/*
 !**/ca_files/.keep
+
+!**/ca_files/crl
+**/ca_files/crl/*
+!**/ca_files/crl/.keep
