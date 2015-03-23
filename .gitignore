@@ -1,0 +1,16 @@
+*.swp
+*.swo
+
+# Dossiers des clés, requêtes et certificats
+**/private/**
+!**/private/.keep
+
+**/requests/**
+!**/requests/.keep
+
+**/certs/**
+!**/certs/.keep
+
+# Fichiers du CA : index, serial, crl, etc
+**/ca_files/**
+!**/ca_files/.keep
