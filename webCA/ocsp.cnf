@@ -1,0 +1,24 @@
+[ req ]
+default_days = 365
+default_keyfile = private/ocsp.key.new
+encrypt_key = no
+default_bits = 2048
+distinguished_name = rdn
+prompt = no
+req_extensions = req_exts
+
+[ rdn ]
+countryName = XX
+localityName = city
+organizationName = organization
+commonName = ocsp.example.com
+emailAddress = webmaster@example.eu
+
+[ req_exts ]
+subjectAltName = @alt_names
+extendedKeyUsage = OCSPSigning
+
+[ alt_names ]
+email.1 = copy
+DNS.1 = ocsp.example.com
+

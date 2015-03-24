@@ -34,5 +34,30 @@ _Note_: This sub CA certificate has been first issue in using the Root CA
 certificate. See [Root CA Certificate](#root-ca-certificate) to learn how to do.
 
 
+OCSP server
+-----------
+
+In order to distribute information about valid certificates, you may want to 
+use an OCSP server.
+
+An example is given for both [root CA][root_ca_ocsp] and [sub CA][web_ca_ocsp]
+to know how to issue OCSP certificate needed for the server.
+
+Then you need to install the script which will take care that OCSP servers stay
+on and the init script to launch it.
+```bash
+sudo cp install/ocsp.sh /root/
+sudo cp install/ocsp /etc/init.d/
+sudo insserv ocsp
+```
+
+You can now start the server:
+```bash
+sudo service ocsp start
+```
+
+
 [root_ca]: rootCA/README.md
 [web_ca]: webCA/README.md
+[root_ca_ocsp]: rootCA/README.md#generate-ocsp-certificate
+[web_ca_ocsp]: webCA/README.md#generate-ocsp-certificate

@@ -46,8 +46,6 @@ issuerAltName                   = issuer:copy
 crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
 authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/
 
-
-
 [ v3_root_ca ]
 # Extensions for the root CA certificate
 basicConstraints                = critical,CA:TRUE
@@ -55,6 +53,16 @@ keyUsage                        = critical, keyCertSign, cRLSign
 subjectKeyIdentifier		= hash
 authorityKeyIdentifier          = keyid,issuer:always
 subjectAltName 			= email:copy
+issuerAltName                   = issuer:copy
+crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/
+
+[ v3_ocsp ]
+# Extensions for the ocsp certificate
+basicConstraints                = critical,CA:FALSE         # Not a CA
+keyUsage                        = critical, digitalSignature, nonRepudiation, keyEncipherment
+subjectKeyIdentifier		= hash
+authorityKeyIdentifier          = keyid,issuer:always
 issuerAltName                   = issuer:copy
 crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
 authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/

@@ -129,6 +129,19 @@ _Note_: You have generated here a certificate called web_ca, but the name
 doesn't matter. You could have issued any other certificate.
 
 
+Generate OCSP certificate
+-------------------------
+
+Follow the instructions of [the previous part](#issue-ca-certificates), but
+instead of using `web_ca.cnf` configuration, use `ocsp.cnf`.
+
+In the step _[Issue the certificate](#issue-the-certificate)_ use instead the
+command:
+```bash
+openssl ca -config openssl.cnf -in requests/ocsp.csr -out certs/ocsp.crt -extensions v3_ocsp -days 365
+```
+
+
 Useful commands
 ---------------
 

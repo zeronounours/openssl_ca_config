@@ -11,8 +11,8 @@ To generate the CA certificate to use, please refer to the dedicated section in
 [Root CA Certificate README](../rootCA/README.md#issue-ca-certificates).
 
 
-Issue a certificates
----------------------
+Issue a certificate
+-------------------
 
 Once you have the CA certificate, you're ready to issue a certificate. The steps
 are very similar the steps you followed to generate your CA certificate.
@@ -90,6 +90,13 @@ Then provide the generated CRL to your CRL distribution point.
 
 _Note_: You have generated here a certificate called example, but the name
 doesn't matter. You could have issued any other certificate.
+
+
+Generate OCSP certificate
+-------------------------
+
+Follow the instructions of [the previous part](#issue-a-certificate), but
+instead of using `example.cnf` configuration, use `ocsp.cnf`.
 
 
 Useful commands
