@@ -8,7 +8,7 @@ Generate the certificate
 ------------------------
 
 To generate the CA certificate to use, please refer to the dedicated section in
-[Root CA Certificate README](../rootCA/README.md#issue_ca_certificate).
+[Root CA Certificate README](../rootCA/README.md#issue-ca-certificates).
 
 
 Issue a certificates

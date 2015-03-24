@@ -31,7 +31,7 @@ To know how to manage it, please refer to the [dedicated README][web_ca]. You
 can also get this informations in the wiki.
 
 _Note_: This sub CA certificate has been first issue in using the Root CA
-certificate. See [Root CA Certificate](#root_ca_certificate) to learn how to do.
+certificate. See [Root CA Certificate](#root-ca-certificate) to learn how to do.
 
 
 [root_ca]: rootCA/README.md
