@@ -3,6 +3,7 @@ default_ca                      = CA_default
 
 [ CA_default ]
 dir                             = .
+ca_dir                          = ../rootCA
 
 # Information used to keep trace of certificate
 database                        = $dir/ca_files/index.txt
@@ -11,8 +12,8 @@ serial                          = $dir/ca_files/serial
 # Information used to generate and store the signed certificate
 certs                           = $dir/certs
 new_certs_dir                   = $dir/newcerts
-certificate                     = $dir/certs/root_ca.crt
-private_key                     = $dir/private/root_ca.key
+certificate                     = $ca_dir/certs/web_ca.crt
+private_key                     = $ca_dir/private/web_ca.key
 
 # Information used for the CRL
 crl_dir			        = $dir/ca_files/crl
@@ -20,7 +21,7 @@ crl		                = $crl_dir/crl.pem
 default_crl_days                = 30                        # Validity duration
 
 # Information used to generate the certificate
-default_days                    = 1825                      # Validity 5 years
+default_days                    = 365                       # Validity 1 year
 default_md                      = sha256                    # Hash method
 preserve                        = no
 policy                          = policy_match              # Policy to respect
@@ -37,24 +38,10 @@ emailAddress                    = optional                  # Email optional
 
 [ x509_extensions ]
 # Extensions for the issued certificates
-basicConstraints                = critical,CA:TRUE,pathlen:0      # No CA below
-keyUsage                        = critical, keyCertSign, cRLSign
+basicConstraints                = critical,CA:FALSE         # Not a CA
+keyUsage                        = critical, digitalSignature, nonRepudiation, keyEncipherment
 subjectKeyIdentifier		= hash
 authorityKeyIdentifier          = keyid,issuer:always
-subjectAltName 			= email:copy
 issuerAltName                   = issuer:copy
-crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
-
-
-
-[ v3_root_ca ]
-# Extensions for the root CA certificate
-basicConstraints                = critical,CA:TRUE
-keyUsage                        = critical, keyCertSign, cRLSign
-subjectKeyIdentifier		= hash
-authorityKeyIdentifier          = keyid,issuer:always
-subjectAltName 			= email:copy
-issuerAltName                   = issuer:copy
-crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
+crlDistributionPoints           = URI:http://crl.sebaux.eu/web_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:83/
