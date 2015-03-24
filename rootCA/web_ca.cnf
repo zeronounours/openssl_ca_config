@@ -11,12 +11,12 @@ req_extensions                  = req_exts
 
 [ rdn ]
 # Information about the issuer
-countryName                     = FR
-localityName                    = Toulouse
-organizationName                = zeroNounours
-organizationalUnitName          = CA
-commonName                      = zeroNounours Web CA
-emailAddress                    = admin@zeronounours.eu
+countryName                     = XX
+localityName                    = city
+organizationName                = organization
+organizationalUnitName          = CA organization unit
+commonName                      = organization Root CA
+emailAddress                    = webmaster@example.com
 
 [ req_exts ]
 # Extensions for the certificate
@@ -24,4 +24,4 @@ basicConstraints                = critical,CA:TRUE,pathlen:0
 keyUsage                        = critical, keyCertSign, cRLSign
 subjectKeyIdentifier		= hash
 subjectAltName 			= email:copy
-nameConstraints                 = critical,permitted;DNS:sebaux.eu; DNS:zeronounours.eu
+nameConstraints                 = critical,permitted;DNS:example.com

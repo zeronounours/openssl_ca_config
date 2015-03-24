@@ -11,12 +11,12 @@ req_extensions                  = req_exts
 
 [ rdn ]
 # Information about the issuer
-countryName                     = FR
-localityName                    = Toulouse
-organizationName                = zeroNounours
-organizationalUnitName          = CA
-commonName                      = zeroNounours Root CA
-emailAddress                    = admin@zeronounours.eu
+countryName                     = XX
+localityName                    = city
+organizationName                = organization
+organizationalUnitName          = CA organization unit
+commonName                      = organization Root CA
+emailAddress                    = admin@example.com
 
 [ req_exts ]
 # Extensions for the certificate

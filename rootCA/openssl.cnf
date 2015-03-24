@@ -43,8 +43,8 @@ subjectKeyIdentifier		= hash
 authorityKeyIdentifier          = keyid,issuer:always
 subjectAltName 			= email:copy
 issuerAltName                   = issuer:copy
-crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
+crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/
 
 
 
@@ -56,5 +56,5 @@ subjectKeyIdentifier		= hash
 authorityKeyIdentifier          = keyid,issuer:always
 subjectAltName 			= email:copy
 issuerAltName                   = issuer:copy
-crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
+crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/

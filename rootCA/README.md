@@ -14,12 +14,12 @@ sure you have adapted the configuration to your needs. Here are some fields
 which must be changed:
 ```bash
 [rdn]
-countryName = FR
-localityName = Toulouse
-organizationName = zeroNounours
-organizationalUnitName = CA
-commonName = zeroNounours Root CA
-emailAddress = admin@zeronounours.eu
+countryName = XX
+localityName = city
+organizationName = organization
+organizationalUnitName = CA origanization unit
+commonName = organization Root CA
+emailAddress = admin@example.com
 ```
 
 All fields in `rnd` section identified the certificate and the organisation
@@ -39,8 +39,8 @@ touch ca_files/index.txt
 You also need to configure the openSSL. Take a look at `openssl.cnf` and
 modify at least the following in both sections `x509_exts` and `v3_root_ca`:
 ```bash
-crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
+crlDistributionPoints           = URI:http://crl.example.com/root_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:82/
 ```
 
 

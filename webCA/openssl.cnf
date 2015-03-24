@@ -43,5 +43,5 @@ keyUsage                        = critical, digitalSignature, nonRepudiation, ke
 subjectKeyIdentifier		= hash
 authorityKeyIdentifier          = keyid,issuer:always
 issuerAltName                   = issuer:copy
-crlDistributionPoints           = URI:http://crl.sebaux.eu/web_ca.crl
-authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:83/
+crlDistributionPoints           = URI:http://crl.example.com/web_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.example.com:83/
