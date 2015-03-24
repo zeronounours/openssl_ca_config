@@ -12,15 +12,15 @@ Generate the certificate
 All the need configuration is located in the file [root_ca.cnf][root_ca]. Make
 sure you have adapted the configuration to your needs. Here are some fields
 which must be changed:
-  ```bash
-  [rdn]
-  countryName = FR
-  localityName = Toulouse
-  organizationName = zeroNounours
-  organizationalUnitName = CA
-  commonName = zeroNounours Root CA
-  emailAddress = admin@zeronounours.eu
-  ```
+```bash
+[rdn]
+countryName = FR
+localityName = Toulouse
+organizationName = zeroNounours
+organizationalUnitName = CA
+commonName = zeroNounours Root CA
+emailAddress = admin@zeronounours.eu
+```
 
 All fields in `rnd` section identified the certificate and the organisation
 which issues it. Be sure of your `organizationName` because further
@@ -32,27 +32,27 @@ configuration will force all signed certificate to have the same
 
 Before creating the root CA certificate, you must created some files used by
 openSSL. Be sure to be in `rootCA/` directory first.
-  ```bash
-  touch ca_files/index.txt
-  ```
+```bash
+touch ca_files/index.txt
+```
 
 You also need to configure the openSSL. Take a look at `openssl.cnf` and
 modify at least the following in both sections `x509_exts` and `v3_root_ca`:
-  ```bash
-  crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
-  authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
-  ```
+```bash
+crlDistributionPoints           = URI:http://crl.sebaux.eu/root_ca.crl
+authorityInfoAccess             = OCSP;URI:http://ocsp.sebaux.eu:82/
+```
 
 
 ### Generation
 
 We are now ready to generate the root CA certificate:
-  ```bash
-  openssl req -config root_ca.cnf -new -out requests/root_ca.csr
-  mv private/root_ca.key.new private/root_ca.key
-  chmod 400 private/root_ca.key
-  openssl ca -create_serial -config openssl.cnf -out certs/root_ca.crt -days 3650 -batch -keyfile private/root_ca.key -selfsign -extensions v3_root_ca -infiles requests/root_ca.csr
-  ```
+```bash
+openssl req -config root_ca.cnf -new -out requests/root_ca.csr
+mv private/root_ca.key.new private/root_ca.key
+chmod 400 private/root_ca.key
+openssl ca -create_serial -config openssl.cnf -out certs/root_ca.crt -days 3650 -batch -keyfile private/root_ca.key -selfsign -extensions v3_root_ca -infiles requests/root_ca.csr
+```
 
 
 Issue CA certificates
@@ -69,10 +69,10 @@ the root CA certificate the whole section `rdn` must be changed. Remember that
 `countryName` and `organizationName` must be the same as ones of the root CA.
 
 When you're ready enter:
-  ```bash
-  openssl req -config web_ca.cnf -new -out requests/web_ca.csr
-  chmod 400 private/web_ca.key.new
-  ```
+```bash
+openssl req -config web_ca.cnf -new -out requests/web_ca.csr
+chmod 400 private/web_ca.key.new
+```
 
 You can verify that that CSR has successfully been issued in `requests/`.
 
@@ -85,9 +85,9 @@ state from which it may be difficult to recover.__
 
 If there is a certificate with the same commonName as the requested one, you
 must revoke it. To do so, execute:
-  ```bash
-  openssl ca -config openssl.cnf -revoke certs/web_ca.crt
-  ```
+```bash
+openssl ca -config openssl.cnf -revoke certs/web_ca.crt
+```
 
 You may want to keep a trace of this certificate intead of removing it. In that
 case, you should copy it in a separate directory (such as `certs/revoked/`)
@@ -100,15 +100,15 @@ using this filename format: `web_ca.crt.YYYY.MM.DD` where `YYYY` is the year,
 Everything is now ready to generate the certificate.
 
 First thing to do is to check the request you're about to sign:
-  ```bash
-  openssl req -in requests/web_ca.csr -noout -text
-  ```
+```bash
+openssl req -in requests/web_ca.csr -noout -text
+```
 
 If everything is normal and the request has not been altered, you can issue the
 certificate:
-  ```bash
-  openssl ca -config openssl.cnf -in requests/web_ca.csr -out certs/web_ca.crt
-  ```
+```bash
+openssl ca -config openssl.cnf -in requests/web_ca.csr -out certs/web_ca.crt
+```
 
 You have now a brand new CA certificate located in `certs/`. Don't forget to
 rename the private key from `web_ca.key.new` to `web_ca.key`.
@@ -118,9 +118,9 @@ rename the private key from `web_ca.key.new` to `web_ca.key`.
 
 You may regenerate the CRL. This must be done for the first issued certificate
 and whenever you rekove a certificate.
-  ```bash
-  openssl ca -config openssl.cnf -gencrl -out ca_files/crl/crl.pem
-  ```
+```bash
+openssl ca -config openssl.cnf -gencrl -out ca_files/crl/crl.pem
+```
 
 Then provide the generated CRL to your CRL distribution point.
 
@@ -136,21 +136,21 @@ Here is a list of useful commands to get information about a certificate. In
 this example we get information about `web_ca.crt`
 
 - Get details:
-  ```bash
-  openssl x509 -in certs/web_ca.crt -noout -text
-  ```
+```bash
+openssl x509 -in certs/web_ca.crt -noout -text
+```
 
 - Get the sha1 fingerprints:
-  ```bash
-  openssl x509 -in certs/web_ca.crt -noout -fingerprint -sha1
-  ```
+```bash
+openssl x509 -in certs/web_ca.crt -noout -fingerprint -sha1
+```
 `sha1` may be replaced by `md5` to get th md5 fingerprint.
 
 - Remove the passphrase of the key:
-  ```bash
-  cp private/web_ca.key private/wab_ca.key.orig
-  openssl rsa -in private/web_ca.key -out private/web_ca.key
-  ```
+```bash
+cp private/web_ca.key private/wab_ca.key.orig
+openssl rsa -in private/web_ca.key -out private/web_ca.key
+```
 The copy of the key is for security reason, in case the next command fails.
 
 
